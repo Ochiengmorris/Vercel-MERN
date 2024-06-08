@@ -31,7 +31,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
-    methods:['POST', 'GET'],
     origin: 'https://vercel-mern-frontend.vercel.app',
 }));
 
