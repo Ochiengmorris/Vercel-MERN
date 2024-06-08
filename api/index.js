@@ -29,12 +29,36 @@ const connect = async () => {
 
 app.use(express.json());
 app.use(cookieParser());
+const allowedOrigins = ['https://vercel-mern-frontend.vercel.app'];
 
-app.use(cors({
-    credentials: true,
-    methods:['GET', 'POST'],
-    origin: ['https://vercel-mern-frontend.vercel.app'],
-}));
+// CORS configuration function
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+
+  // Check if the origin is in the allowed list
+  if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = {
+      origin: true,
+      credentials: true, // Allow credentials (cookies, authorization headers)
+      methods: 'GET,POST,PUT,DELETE,OPTIONS', // Allowed methods
+      allowedHeaders: 'Content-Type,Authorization' // Allowed headers
+    };
+  } else {
+    corsOptions = { origin: false }; // Disable CORS for this request
+  }
+
+  // Callback expects two parameters: error and options
+  callback(null, corsOptions);
+};
+
+// Use CORS middleware with custom options
+app.use(cors(corsOptionsDelegate));
+
+// app.use(cors({
+//     credentials: true,
+//     methods:['GET', 'POST'],
+//     origin: ['https://vercel-mern-frontend.vercel.app'],
+// }));
 
 // Routes
 app.get('/', async (req, res) => {
