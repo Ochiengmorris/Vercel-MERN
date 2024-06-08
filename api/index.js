@@ -29,9 +29,10 @@ const connect = async () => {
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(cors({
     credentials: true,
-    origin: 'https://vercel-mern-frontend.vercel.app',
+    origin: ['https://vercel-mern-frontend.vercel.app'],
 }));
 
 // Routes
