@@ -9,7 +9,7 @@ import RegisterPage from './Pages/RegisterPage.jsx';
 import AccountPage from './Pages/AccountPage.jsx';
 import { UserContextProvider } from './UserContext.jsx';
 
-axios.defaults.baseURL = 'http://localhost:8001';
+axios.defaults.baseURL = 'vercel-mern-api.vercel.app';
 axios.defaults.withCredentials = 'true';
 
 
