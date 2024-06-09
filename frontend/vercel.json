@@ -5,6 +5,5 @@
     { "src": "/register", "dest": "/" }
     { "src": "/note", "dest": "/" }
     { "src": "/profile", "dest": "/" }
-    // ....
   ]
 }
