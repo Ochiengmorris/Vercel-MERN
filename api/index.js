@@ -17,12 +17,24 @@ const jwtSecret = 'iodniwdjhcniwdjscnxedowkcnedwcknwdoc';
 const PORT = process.env.PORT || 8001;
 const MONGO = process.env.MONGO
 
+// const connect = async () => {
+//     try {
+//         await mongoose.connect(MONGO);
+//         console.log("MONGODB connected!");
+//     } catch (error) {
+//         throw error
+//     }
+// };
 const connect = async () => {
     try {
-        await mongoose.connect(MONGO);
-        console.log("MONGODB connected!");
+        await mongoose.connect(MONGO, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("MongoDB connected!");
     } catch (error) {
-        throw error
+        console.error("MongoDB connection error:", error);
+        process.exit(1); // Exit if unable to connect to DB
     }
 };
 
