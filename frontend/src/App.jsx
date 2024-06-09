@@ -9,7 +9,7 @@ import RegisterPage from './Pages/RegisterPage.jsx';
 import AccountPage from './Pages/AccountPage.jsx';
 import { UserContextProvider } from './UserContext.jsx';
 
-axios.defaults.baseURL = 'https://vercel-mern-api.vercel.app';
+axios.defaults.baseURL = 'https://notesbackend-4e6s.onrender.com';
 axios.defaults.withCredentials = 'true';
 
 
