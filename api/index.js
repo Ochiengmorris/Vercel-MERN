@@ -38,14 +38,15 @@ app.use(cors({
 
 // Routes
 app.get('/', async (req, res) => {
-    // try {
-    //     const AllNotes = await Note.find().populate('owner', 'name');
-    //     // console.log(AllNotes);
-    //     res.json(AllNotes);
-    // } catch (error) {
-    //     console.error('Error retrieving places:', error);
-    //     res.status(500).json({ error: 'Internal Server Error' });
-    // }
+    try {
+        const AllNotes = await Note.find().populate('owner', 'name');
+        // console.log(AllNotes);
+        res.json("I'm here now!");
+        res.json(AllNotes);
+    } catch (error) {
+        console.error('Error retrieving places:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
     res.json("server is running!");
 });
 app.post('/register', async (req, res) => {
