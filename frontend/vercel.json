@@ -1,8 +1,9 @@
 {
-  "routes": [
-    {
-      "src": "/[^.]+",
-      "dest": "/"
-    }
+  "rewrites": [
+    { "source": "/", "destination": "https://notesbackend-4e6s.onrender.com/" },
+    { "source": "/login", "destination": "https://notesbackend-4e6s.onrender.com/login" },
+    { "source": "/register", "destination": "https://notesbackend-4e6s.onrender.com/register" },
+    { "source": "/account", "destination": "https://notesbackend-4e6s.onrender.com/profile" },
+    { "source": "/note", "destination": "https://notesbackend-4e6s.onrender.com/note" },
   ]
 }
