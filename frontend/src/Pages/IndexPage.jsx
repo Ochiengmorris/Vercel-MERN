@@ -79,8 +79,8 @@ const IndexPage = () => {
 
   return (
     <div>
-      <div className="mt-8 2xl:w-7/12 mx-auto">
-        <h3 className="text-center 2xl:w-8/12 mx-auto font-semibold border-b border-black">Global Notes</h3>
+      <div className="mt-8 2xl:w-8/12 mx-auto">
+        <h3 className="text-center w-full font-semibold border-b border-black">Global Notes</h3>
         <div className="grid grid-cols-1 2xl:w-7/12 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 auto-rows-auto">
           {items?.length > 0 ? (
             items.map((item, index) => (
@@ -90,7 +90,7 @@ const IndexPage = () => {
             <p>No items available.</p> // Fallback if items array is empty
           )}
         </div>
-        <form onSubmit={handleNote}>
+        <form className="2xl:w-11/12 mx-auto" onSubmit={handleNote}>
           <div className="flex flex-col mt-4">
             <label>Add a new Note</label>
             <textarea
