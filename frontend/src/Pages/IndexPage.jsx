@@ -80,8 +80,8 @@ const IndexPage = () => {
   return (
     <div>
       <div className="mt-8 2xl:w-7/12 mx-auto">
-        <h3 className="text-center font-semibold border-b border-black">Global Notes</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 auto-rows-auto">
+        <h3 className="text-center 2xl:w-8/12 mx-auto font-semibold border-b border-black">Global Notes</h3>
+        <div className="grid grid-cols-1 2xl:w-7/12 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 auto-rows-auto">
           {items?.length > 0 ? (
             items.map((item, index) => (
               <MasonryGrid key={index} item={item.note} name={item.owner?.name || 'unkwown'} />
