@@ -79,7 +79,7 @@ const IndexPage = () => {
 
   return (
     <div>
-      <div className="mt-8">
+      <div className="mt-8 2xl:w-8/12">
         <h3 className="text-center font-semibold border-b border-black">Global Notes</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 auto-rows-auto">
           {items?.length > 0 ? (
