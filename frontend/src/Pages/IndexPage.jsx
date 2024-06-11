@@ -104,10 +104,10 @@ const IndexPage = () => {
               rows={3}
               value={note}
               onChange={ev => setNote(ev.target.value)} />
-            <div className="gap-2 mt-2 self-end">
+            <div className="flex gap-2 mt-2 self-end">
               <button
                 onClick={handleRefresh}
-                className='p-2 font-bold bg-gray-100 rounded-xl text-black '>
+                className='p-2 font-bold bg-gray-100 cursor-pointer border border-black rounded-xl text-black '>
                 Refresh
               </button>
               <button
