@@ -24,7 +24,7 @@ const MasonryGrid = ({ item, name }) => {
   return (
     <div className={`${colorClass} relative p-4 border border-gray-200 rounded-lg shadow-md`}>
       {item}
-      <div className='absolute text-xs right-2'>{name}</div>
+      <div className='absolute text- bottom-2 right-2'>{name}</div>
     </div>
   );
 }
