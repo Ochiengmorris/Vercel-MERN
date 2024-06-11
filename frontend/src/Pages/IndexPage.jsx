@@ -41,6 +41,11 @@ const IndexPage = () => {
     }
   }, [ready, fetchData]);
 
+  const handleRefresh = (ev)=>{
+    ev.preventDefault();
+    fetchData();
+  }
+
   const handleNote = async (ev) => {
     ev.preventDefault();
     if (!note.trim()) {
@@ -99,9 +104,19 @@ const IndexPage = () => {
               rows={3}
               value={note}
               onChange={ev => setNote(ev.target.value)} />
-            <button
-              type='submit'
-              className='self-end p-2 font-bold bg-black mt-2 rounded-xl text-white '>Submit</button>
+            <div className="gap-2 mt-2 self-end">
+              <button
+                onClick={handleRefresh}
+                className='p-2 font-bold bg-gray-100 rounded-xl text-black '>
+                Refresh
+              </button>
+              <button
+                type='submit'
+                className='p-2 font-bold bg-black rounded-xl text-white '>
+                Submit
+              </button>
+            </div>
+
           </div>
         </form>
 
