@@ -14,14 +14,16 @@ const AccountPage = () => {
     subpage = 'profile';
   }
 
-    async function logout() {
-      await axios.post('/logout');
-      setRedirect('/');
-      setUser(null);
-    }
+  async function logout() {
+    await axios.post('/logout');
+    setRedirect('/');
+    setUser(null);
+  }
 
   if (!ready) {
-    return 'Loading... please wait!';
+    return (
+      <div className="loader flex self-center my-auto"></div>
+    )
   }
 
   if (ready && !user && !redirect) {

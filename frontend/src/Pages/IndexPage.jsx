@@ -79,7 +79,11 @@ const IndexPage = () => {
     return <Navigate to="/login" />;
   }
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="loader flex self-center my-auto"></div>
+    )
+  }
   if (error) return <p>{error}</p>;
 
   return (
