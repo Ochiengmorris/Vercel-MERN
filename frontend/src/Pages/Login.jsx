@@ -28,19 +28,19 @@ const Login = () => {
                 setModalMessage(`Login Successful.`);
                 setModalOpen(true);
             } else {
-                setError('Login failed! Please try again.');
+                setError(response.data.message);
             }
 
         } catch (error) {
-            console.error('Error logging in:', error);
+            console.log('Error logging in:', error);
             // Set error message based on the response
             if (error.response) {
                 setError(error.response.data.message || 'Login failed! Please try again.');
+                setModalMessage(error.response.data.message);
+                setModalOpen(true);
             } else {
                 setError('Network error! Please try again later.');
             }
-            setModalMessage(error.message);
-            setModalOpen(true);
         }
     };
 
