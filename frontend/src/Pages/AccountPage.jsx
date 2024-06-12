@@ -8,17 +8,56 @@ const AccountPage = () => {
 
   const [redirect, setRedirect] = useState(null);
   const { ready, user, setUser } = useContext(UserContext);
-
-  let { subpage } = useParams();
-  if (subpage === 'account') {
-    subpage = 'profile';
-  }
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [message, setMessage] = useState('');
+  
+  // let { subpage } = useParams();
+  // if (subpage === 'account') {
+  //   subpage = 'profile';
+  // }
 
   async function logout(e) {
     e.preventDefault();
+
     await axios.post('/logout');
     setRedirect('/');
     setUser(null);
+  }
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        if (!ready && !user) {
+          const { data } = await axios.get('/profile');
+          if (data) {
+            setUser(data);
+          } else {
+            setRedirect('/');
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    };
+
+    fetchProfile();
+  }, [ready, user, setUser]);
+
+  async function handleChangePassword(e) {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('/change-password', {
+        currentPassword,
+        newPassword
+      });
+
+      setMessage("Password updated successfully.");
+      setCurrentPassword('');
+      setNewPassword('');
+    } catch (error) {
+      setMessage(error.response ? error.response.data : "Error updating password.");
+    }
   }
 
   if (!ready) {
@@ -27,9 +66,9 @@ const AccountPage = () => {
     )
   }
 
-  if (ready && !user && !redirect) {
-    return <Navigate to={'/login'} />
-  }
+  // if (ready && !user && !redirect) {
+  //   return <Navigate to={'/login'} />
+  // }
 
 
   if (redirect) {
@@ -58,9 +97,35 @@ const AccountPage = () => {
         <div className="pl-2 p-2 rounded bg-gray-200 my-2">
           <label>Email : <b>{user.email}</b></label>
         </div>
-        <div className="pl-2 p-2 rounded bg-gray-200 my-2">
-          <label>Password : <span className='text-gray-400'>Change password</span></label>
-        </div>
+
+        <form onSubmit={handleChangePassword} className="bg-gray-200 p-5 rounded-lg mt-4">
+          <h3 className="mb-4 text-lg font-semibold">Change Password</h3>
+          <div className="mb-2">
+            <label className="block mb-1">Current Password</label>
+            <input
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              className="w-full p-2 border border-black rounded"
+              required
+            />
+          </div>
+          <div className="mb-2">
+            <label className="block mb-1">New Password</label>
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="w-full p-2 border border-black rounded"
+              required
+            />
+          </div>
+          <button type="submit" className="bg-black text-white p-2 rounded-lg w-full mt-2">
+            Change Password
+          </button>
+          {message && <p className="mt-2 text-center text-red-500">{message}</p>}
+        </form>
+
         <button onClick={logout} className='bg-black w-full text-white mt-2 p-2 text-lg font-bold rounded-xl'>Logout</button>
       </div>
     </div>
