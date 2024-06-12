@@ -10,7 +10,7 @@ import AccountPage from './Pages/AccountPage.jsx';
 import { UserContextProvider } from './UserContext.jsx';
 
 axios.defaults.baseURL = 'https://notesbackend-4e6s.onrender.com';
-axios.defaults.withCredentials = 'true';
+axios.defaults.withCredentials = true;
 
 
 function App() {
