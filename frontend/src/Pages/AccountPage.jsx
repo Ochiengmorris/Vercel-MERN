@@ -14,7 +14,8 @@ const AccountPage = () => {
     subpage = 'profile';
   }
 
-  async function logout() {
+  async function logout(e) {
+    e.preventDefault();
     await axios.post('/logout');
     setRedirect('/');
     setUser(null);
