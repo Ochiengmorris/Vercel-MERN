@@ -114,28 +114,32 @@ const AccountPage = () => {
         </div>
 
         <form onSubmit={handleChangePassword} className="bg-gray-200 p-5 rounded-lg mt-4">
-          <h3 className="mb-4 text-lg font-semibold">Change Password</h3>
-          <div className="mb-2">
-            <label className="block mb-1">Current Password</label>
-            <input
-              type="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              className="w-full p-2 border border-black rounded"
-              required
-            />
+          <h3 className="mb-4 font-semibold">Change Password</h3>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="mb-2">
+              <input
+                type="password"
+                placeholder='Current Password'
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full p-2 border border-black rounded"
+                required
+              />
+            </div>
+            <div className="mb-2">
+
+              <input
+                type="password"
+                placeholder='New password'
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full p-2 border border-black rounded"
+                required
+              />
+            </div>
           </div>
-          <div className="mb-2">
-            <label className="block mb-1">New Password</label>
-            <input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full p-2 border border-black rounded"
-              required
-            />
-          </div>
-          <button type="submit" className="bg-black text-white p-2 rounded-lg w-full mt-2">
+
+          <button type="submit" className="bg-black text-white font-bold w-full p-2 rounded-lg right-0 mt-2">
             Change Password
           </button>
           {showMessage && <p className={`mt-2 text-center ${color}`}>{message}</p>}
