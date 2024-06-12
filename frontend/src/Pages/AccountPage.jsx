@@ -11,11 +11,8 @@ const AccountPage = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
-
-  // let { subpage } = useParams();
-  // if (subpage === 'account') {
-  //   subpage = 'profile';
-  // }
+  const [color, setColor] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
 
   async function logout(e) {
     e.preventDefault();
@@ -52,12 +49,30 @@ const AccountPage = () => {
         newPassword
       });
 
-      setMessage("Password updated successfully.");
+      // console.log(response.data)
+      if (response.status === 200) {
+        setMessage(response.data.message);
+        setColor('text-green-900');
+        setCurrentPassword('');
+        setNewPassword('');
+        setShowMessage(true);
+      } else {
+        setMessage(response.data.message);
+        setCurrentPassword('');
+        setNewPassword('');
+        setShowMessage(true);
+      }
+    } catch (error) {
+      setMessage(error.response.data.message || "Error updating password.");
+      setColor('text-red-500');
       setCurrentPassword('');
       setNewPassword('');
-    } catch (error) {
-      setMessage(error.response ? error.response.data : "Error updating password.");
+      setShowMessage(true);
     }
+
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 3000);
   }
 
   if (!ready) {
@@ -123,7 +138,7 @@ const AccountPage = () => {
           <button type="submit" className="bg-black text-white p-2 rounded-lg w-full mt-2">
             Change Password
           </button>
-          {message && <p className="mt-2 text-center text-red-500">{message}</p>}
+          {showMessage && <p className={`mt-2 text-center ${color}`}>{message}</p>}
         </form>
 
         <button onClick={logout} className='bg-black w-full text-white mt-2 p-2 text-lg font-bold rounded-xl'>Logout</button>
