@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../UserContext.jsx'
 import { Link, Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +11,7 @@ const AccountPage = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
-  
+
   // let { subpage } = useParams();
   // if (subpage === 'account') {
   //   subpage = 'profile';
